@@ -16,7 +16,7 @@ def main():
 
     while conn:
         req = conn.recv(1024)
-        conn.sendall(res)
+        conn.sendall(res.encode())
 
 
 if __name__ == "__main__":
