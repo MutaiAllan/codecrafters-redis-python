@@ -11,8 +11,12 @@ def main():
     server_socket = socket.create_server(("localhost", 6379), reuse_port=True)
     conn, address = server_socket.accept() # wait for client
     res = "+PONG\r\n"
-    with conn:
-        conn.send(res.encode())
+    # with conn:
+    #     conn.send(res.encode())
+
+    while conn:
+        req = conn.recv(1024)
+        conn.sendall(res)
 
 
 if __name__ == "__main__":
