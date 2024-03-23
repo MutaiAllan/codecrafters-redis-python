@@ -9,7 +9,10 @@ def main():
     # Uncomment this to pass the first stage
     #
     server_socket = socket.create_server(("localhost", 6379), reuse_port=True)
-    server_socket.accept() # wait for client
+    conn, address = server_socket.accept() # wait for client
+    res = "+PONG\r\n"
+    with conn:
+        conn.send(res.encode())
 
 
 if __name__ == "__main__":
